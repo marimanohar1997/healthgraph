@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+
+<h4>Post </h4>
+<p>
+  <strong>Name:</strong>
+  <%= @post.name %>
+</p>
+
+<p style="width: 20%">
+  <strong>Attachment:</strong>
+  <%= image_tag @post.attachment_url,:class => "card-img-top"%>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %>
+
+
+<br/>
+
+
+<h4>Comments </h4>
+
+<% @post.comments.map do |data| %>
+<p>
+  <strong>Name:</strong>
+  <%= data.name %>
+  <strong>Description:</strong>
+  <%= data.description %>
+<td><%= link_to 'Edit', edit_comment_path(data) %></td>
+  
+</p>
+
+
+
+<% end %>
+
+
+<%= link_to 'Back', posts_path %>

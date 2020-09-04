@@ -1,0 +1,62 @@
+
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<div class="container">
+  <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+<form style="text-align: center;">
+  <div class="form-group">
+    <label for="name"><%= form.label :name %></label>
+    <%= form.text_field :name, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label for="description"><%= form.label :Image %></label>
+    <%= form.file_field :attachment%>
+    
+
+  </div>
+  <%= image_tag form.object.attachment.url,:class => "card-img-top" rescue ""%>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br />
+<br />
+<% if post.comments.length > 0 %>
+  <div class="card">
+  <div class="card-header" style="font-style: italic;">
+    <%= post.name %> has <%= post.comments.count %> comments
+  </div>
+  <div class="card-body">
+    <% post.comments.each do |comment| %>
+    <blockquote class="blockquote mb-0">
+      <p><%= comment.name %> </p>
+      <footer class="blockquote-footer">
+        <%= link_to '', edit_comment_path(comment), :class =>"fa fa-edit icon-view"%>
+        <%= link_to '', comment, method: :soft_delete,:class =>"fa fa-trash icon-view", data: { confirm: 'Are you sure want to destroy?' } %>
+        <%= link_to '', comment, method: :delete,:class =>"fa fa-trash icon-view", :style =>"color:red;", data: { confirm: 'Are you sure want to permanently delete?' } %>
+      </footer>
+    </blockquote>
+    <% end %>
+    </div>
+    </div>
+    <% end %>
+</div>
+</div>
+<div class="col-md-3"></div>
+</div>
+<% end %>
+

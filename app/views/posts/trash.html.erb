@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<h2 class="title-align"> Trash</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table table-hover">
+          <% if @posts.count > 0  %>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Restore</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <% Post.only_deleted.each do |post| %>
+              <tr>
+                <td><%= post.name  %></td>
+                <td><%= image_tag post.attachment_url,:class => "card-img-top"%></td>
+                <td><%= link_to '', post, method: :restore,:class => "fa fa-window-restore icon-view" ,data: { confirm: 'Are you sure want to restore?' } %></td>
+              </tr>
+              <% end %>
+            </tbody>
+
+              <tbody>
+                <% Comment.only_deleted.each do |comment| %>
+                 
+                <tr>
+                 
+                <td><%= comment.name  %></td>
+                <td><%= comment.description  %></td>
+                <td><%= link_to '', comment, method: :restore,:class => "fa fa-window-restore icon-view" ,data: { confirm: 'Are you sure want to restore?' } %></td>
+                </tr>
+                
+                <% end %>
+
+              </tbody>
+              
+          <% else %>
+           <div>
+              Sorry No data found
+           </div>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

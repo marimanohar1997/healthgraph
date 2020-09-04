@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<h2 class="title-align"> Posts</h2>
+<%= link_to 'New Post', new_post_path,:class =>"btn btn-primary back-button"  %>
+<br>
+
+<% if @posts.length > 0 %>
+<div class="container">
+<div class="row">
+  <% @posts.each do |post| %>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        
+        <div style="float: right;">
+          <div class="card" style="width: 30rem;">
+            <%= image_tag post.attachment_url,:class => "card-img-top"%>
+              <div class="card-body">
+                <h5 class="card-title"><%= post.name  %></h5>
+              </div>
+            </div>
+        <%= link_to '', edit_post_path(post), :class =>"fa fa-edit icon-view" %>
+        <%= link_to '', post, method: :delete, :class =>"fa fa-trash icon-view",data: { confirm: 'Are you sure want to Destroy?' } %>
+        <%= link_to '', post,:class =>"fa fa-trash icon-view", :style =>"color:red;",method: :hard_delete, data: { confirm: 'Are you sure want to permanently delete?' } %>
+
+        </div>
+      </div>
+    <% if post.comments.length > 0 %>
+         This Post has <%= post.comments.count %> comments
+      <div class="card" style="width: 18rem;margin: 5px 0px 5px 5px">
+        <table >
+            <tbody>
+          <% post.comments.each do |comment| %>
+          <tr>
+          <td><%= comment.name %></td>
+          <td><%= link_to '', edit_comment_path(comment),:class =>"fa fa-edit icon-view"%></td>
+          <td><%= link_to '',comment, method: :soft_delete,:class =>"fa fa-trash icon-view", data: { confirm: 'Are you sure want to destroy?' } %></td>
+          <td><%= link_to '', comment, :class =>"fa fa-trash icon-view", :style =>"color:red;",method: :delete, data: { confirm: 'Are you sure want to permanently delete?' } %></td>
+          </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+    </div>
+    <br>
+  </div>
+<% end %>  
+</div>
+</div>
+<% else %>
+<div class="container">
+<p class="no-data">No Posts found</p>
+</div>
+<% end %>
+
+
+
