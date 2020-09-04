@@ -1,24 +1,17 @@
-# README
+Ruby - 2.7.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails - 6.0
 
-Things you may want to cover:
+Database - Mysql
 
-* Ruby version
+Features:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  1. Image Uploading
+   
+  2. Create, Edit , View All posts and their comments
+   
+  3. Having soft delete and hard delete for posts and comments
+   
+  4. Also having trash option to view the deleted posts and comments
+   
+  5. Having restore option to restore the posts and comments
