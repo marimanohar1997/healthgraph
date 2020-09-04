@@ -22,13 +22,12 @@
               <%= form.text_field :name, :class => "form-control" %>
             </div>
             <div class="form-group">
-              <label for="description"><%= form.label :description %></label>
-              <%= form.text_field :name, :class => "form-control" %>
-            </div>
-            <div class="form-group">
               <label for="post_id"><%= form.label :post_id %></label>
               <%= form.collection_select :post_id, Post.order(:name),:id,:name, include_blank: true ,:class => "form-control" %>
+              <%= link_to 'Add Post', new_post_path,:class =>"fa fa-plus icon-view"%>
             </div>
+            
+
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
       </div>

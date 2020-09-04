@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 <h2 class="title-align"> Trash</h2>
-
 <div class="container">
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <table class="table table-hover">
-          <% if @posts.count > 0  %>
+          <% if @posts.first.count > 0  %>
           <thead>
             <tr>
               <th>Name</th>
@@ -24,24 +23,10 @@
               </tr>
               <% end %>
             </tbody>
-
-              <tbody>
-                <% Comment.only_deleted.each do |comment| %>
-                 
-                <tr>
-                 
-                <td><%= comment.name  %></td>
-                <td><%= comment.description  %></td>
-                <td><%= link_to '', comment, method: :restore,:class => "fa fa-window-restore icon-view" ,data: { confirm: 'Are you sure want to restore?' } %></td>
-                </tr>
-                
-                <% end %>
-
-              </tbody>
               
           <% else %>
-           <div>
-              Sorry No data found
+           <div style="text-align: center;">
+              No data found
            </div>
         <% end %>
       </table>

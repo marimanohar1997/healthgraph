@@ -6,16 +6,6 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @comment.description %>
-</p>
-
-<p>
-  <strong>Tag:</strong>
-  <%= @comment.tag %>
-</p>
-
-<p>
   <strong>Post:</strong>
   <%= Post.find(@comment.post_id).name %>
 </p>
